@@ -87,22 +87,6 @@ RUN set -ex && \
 
 #
 #__________________________________________________________________________________________________
-# Setup user
-#
-
-ARG	USER_ID=1000
-
-RUN set -x && \
-	addgroup -g ${USER_ID} -S bee && \
-	adduser -u ${USER_ID} -D -S -G bee bee
-
-USER bee
-VOLUME /home/bee/
-WORKDIR /home/bee/
-
-
-#
-#__________________________________________________________________________________________________
 # Install VOC
 #
 
@@ -129,3 +113,18 @@ RUN set -ex && \
     java -classpath ${PYTHON_JAVA_SUPPORT_JAR}:. python.example && \
     cd /home/bee/ && \
     rm -Rf /tmp/voc_tutorial0
+
+#
+#__________________________________________________________________________________________________
+# Setup user
+#
+
+ARG	USER_ID=1000
+
+RUN set -x && \
+	addgroup -g ${USER_ID} -S bee && \
+	adduser -u ${USER_ID} -D -S -G bee bee
+
+USER bee
+VOLUME /home/bee/
+WORKDIR /home/bee/
