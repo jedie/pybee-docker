@@ -52,18 +52,52 @@ RUN set -ex \
     && apk add --no-cache git nodejs \
 && npm install -g npm
 
+
 #
 #__________________________________________________________________________________________________
-# Display some version informations:
+# Install Android SDK
 #
+
+# Latest version number on:
+# https://developer.android.com/studio/index.html
+# under: "Get just the command line tools"
+ENV SDK_TOOLS_VERSION=3859397
+RUN set -ex && \
+    cd /tmp && \
+    wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip
+
+ENV ANDROID_HOME /opt/android
+ENV PATH $PATH:$ANDROID_HOME/bin
+
+RUN set -ex && \
+    cd /tmp && \
+    ls -la && \
+    unzip android-sdk.zip && \
+    rm android-sdk.zip && \
+    mv tools ${ANDROID_HOME} && \
+    ls -la ${ANDROID_HOME}/bin && \
+    yes | sdkmanager --licenses > /dev/null && \
+    sdkmanager --update && \
+    sdkmanager --list
+
+
+#
+#__________________________________________________________________________________________________
+# Setup user
+#
+
+ARG	USER_ID=1000
+
+RUN set -x \
+	&& addgroup -g ${USER_ID} -S bee \
+	&& adduser -u ${USER_ID} -D -S -G bee bee
+
+WORKDIR /home/bee/
 
 
 RUN set -ex && \
-    python --version && \
-    javac -version && \
-    ant -version && \
-    node --version && \
-    npm --version
+    pip3 install --no-cache-dir --upgrade pip
+
 
 #
 #__________________________________________________________________________________________________
@@ -71,14 +105,14 @@ RUN set -ex && \
 #
 
 RUN set -ex && \
-    mkdir ~/pybee && \
-    cd ~/pybee && \
+    cd /opt && \
     git clone --depth=5 https://github.com/pybee/voc.git && \
-    cd ~/pybee/voc && \
+    cd voc && \
     pip install -e . && \
     ant java && \
     ls -la dist
 
+ENV PYTHON_JAVA_SUPPORT_JAR=/opt/voc/dist/python-java-support.jar
 
 #
 #__________________________________________________________________________________________________
@@ -86,8 +120,10 @@ RUN set -ex && \
 # https://voc.readthedocs.io/en/latest/tutorial/tutorial-0.html
 #
 RUN set -ex && \
-    mkdir ~/tutorial0 && \
-    cd ~/tutorial0 && \
+    mkdir -p /tmp/voc_tutorial0 && \
+    cd /tmp/voc_tutorial0 && \
     echo "print('Hello World!')">example.py && \
     voc -v example.py && \
-    java -classpath ~/pybee/voc/dist/python-java-support.jar:. python.example
+    java -classpath ${PYTHON_JAVA_SUPPORT_JAR}:. python.example && \
+    cd /home/bee/ && \
+    rm -Rf /tmp/voc_tutorial0

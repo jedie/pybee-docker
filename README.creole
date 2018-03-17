@@ -5,9 +5,16 @@ Docker containers for the PyBee project
 | {{https://travis-ci.org/jedie/pybee-docker.svg|Build Status on travis-ci.org}} | [[https://travis-ci.org/jedie/pybee-docker/|travis-ci.org/jedie/pybee-docker]] |
 
 
-== Links:
+== PyBee links:
 
-| Github              | [[https://github.com/pybee]]
+ * https://github.com/pybee
+
+
+=== Android SDK related links:
+
+ * https://developer.android.com/studio/index.html
+ * https://hub.docker.com/r/runmymind/docker-android-sdk/
+ * https://github.com/mindrunner/docker-android-sdk
 
 
 == donation
