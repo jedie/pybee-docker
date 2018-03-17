@@ -4,4 +4,12 @@ Docker containers for the PyBee project
 
 | {{https://travis-ci.org/jedie/pybee-docker.svg|Build Status on travis-ci.org}} | [[https://travis-ci.org/jedie/pybee-docker/|travis-ci.org/jedie/pybee-docker]] |
 
-https://github.com/pybee
+
+== Links:
+
+| Github              | [[https://github.com/pybee]]
+
+
+== donation
+
+* Send [[http://www.bitcoin.org/|Bitcoins]] to [[https://blockexplorer.com/address/1823RZ5Md1Q2X5aSXRC5LRPcYdveCiVX6F|1823RZ5Md1Q2X5aSXRC5LRPcYdveCiVX6F]]
