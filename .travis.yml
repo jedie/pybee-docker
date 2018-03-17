@@ -9,8 +9,8 @@ before_script:
     - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 
 script:
-    - set -ex
-
+    - set -e
+    
     # create docker image
     - ./build.sh
 
