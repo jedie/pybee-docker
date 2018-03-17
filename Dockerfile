@@ -6,11 +6,14 @@
 # https://hub.docker.com/_/python/
 FROM python:3.6-alpine
 
+MAINTAINER Jens Diemer "https://github.com/jedie/pybee-docker"
 
 # prepare
 RUN set -ex && \
-    apk add --no-cache git ca-certificates wget
-
+    apk --no-cache upgrade && \
+    apk add --no-cache git ca-certificates wget && \
+    rm -rf /var/cache/apk/* && \
+    pip3 install --no-cache-dir --upgrade pip
 
 #
 #__________________________________________________________________________________________________
@@ -18,7 +21,8 @@ RUN set -ex && \
 # borrowed from: https://github.com/docker-library/openjdk/blob/master/8-jdk/alpine/Dockerfile
 #
 RUN set -ex && \
-    apk add --no-cache openjdk8
+    apk add --no-cache openjdk8 && \
+    rm -rf /var/cache/apk/*
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH ${PATH}:${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin
@@ -48,9 +52,11 @@ RUN set -ex && \
 # Install nodejs and npm
 #
 
-RUN set -ex \
-    && apk add --no-cache git nodejs \
-&& npm install -g npm
+RUN set -ex && \
+    apk add --no-cache git nodejs && \
+    rm -rf /var/cache/apk/* && \
+    npm install -g npm && \
+
 
 
 #
@@ -86,15 +92,13 @@ RUN set -ex && \
 
 ARG	USER_ID=1000
 
-RUN set -x \
-	&& addgroup -g ${USER_ID} -S bee \
-	&& adduser -u ${USER_ID} -D -S -G bee bee
+RUN set -x && \
+	addgroup -g ${USER_ID} -S bee && \
+	adduser -u ${USER_ID} -D -S -G bee bee
 
+USER bee
+VOLUME /home/bee/
 WORKDIR /home/bee/
-
-
-RUN set -ex && \
-    pip3 install --no-cache-dir --upgrade pip
 
 
 #
