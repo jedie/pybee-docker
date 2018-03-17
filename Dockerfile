@@ -111,7 +111,6 @@ RUN set -ex && \
     echo "print('Hello World!')">example.py && \
     voc -v example.py && \
     java -classpath ${PYTHON_JAVA_SUPPORT_JAR}:. python.example && \
-    cd /home/bee/ && \
     rm -Rf /tmp/voc_tutorial0
 
 #
