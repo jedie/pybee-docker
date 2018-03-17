@@ -55,7 +55,7 @@ RUN set -ex && \
 RUN set -ex && \
     apk add --no-cache git nodejs && \
     rm -rf /var/cache/apk/* && \
-    npm install -g npm && \
+    npm install -g npm
 
 
 
