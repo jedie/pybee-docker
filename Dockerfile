@@ -87,9 +87,8 @@ RUN set -ex && \
 
 #
 #__________________________________________________________________________________________________
-# Install VOC
+# Install VOC - https://github.com/pybee/voc
 #
-
 RUN set -ex && \
     cd /opt && \
     git clone --depth=5 https://github.com/pybee/voc.git && \
@@ -102,7 +101,7 @@ ENV PYTHON_JAVA_SUPPORT_JAR=/opt/voc/dist/python-java-support.jar
 
 #
 #__________________________________________________________________________________________________
-# build a "Hello World"
+# Test VOC by build a "Hello World"
 # https://voc.readthedocs.io/en/latest/tutorial/tutorial-0.html
 #
 RUN set -ex && \
@@ -112,6 +111,16 @@ RUN set -ex && \
     voc -v example.py && \
     java -classpath ${PYTHON_JAVA_SUPPORT_JAR}:. python.example && \
     rm -Rf /tmp/voc_tutorial0
+
+#
+#__________________________________________________________________________________________________
+# Install Briefcase - https://github.com/pybee/briefcase
+#
+RUN set -ex && \
+    cd /opt && \
+    git clone --depth=5 https://github.com/pybee/briefcase.git && \
+    cd briefcase && \
+    pip install -e .
 
 #
 #__________________________________________________________________________________________________
