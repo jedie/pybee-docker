@@ -2,6 +2,8 @@
 
 set -e
 
+./shell.sh sdkmanager --list
+
 # List all installed packages:
 ./shell.sh pip freeze
 
@@ -15,3 +17,4 @@ set -e
 ./shell.sh npm --version
 
 ./shell.sh voc --version
+

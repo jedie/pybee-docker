@@ -1,6 +1,8 @@
 #
 # Config file for automatic testing at travis-ci.org
 #
+# build docker image and push it to docker hub.
+#
 
 language: bash
 services: docker
@@ -10,13 +12,26 @@ before_script:
 
 script:
     - set -e
+
+    # build 'jedie/pybee:latest'
+    - cd base
     - ./build.sh
+
+    # build
+    - cd ..
+    - ./build.sh
+
     - ./version_info.sh
+
+    - cd tests
+    - ./run_test.sh test_voc_turorial0.sh
 
 after_script:
     - docker images
 
 after_success:
+    # push builded image to:
+    # https://hub.docker.com/r/jedie/pybee/
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
         docker push jedie/pybee:latest;
       fi

@@ -1,8 +1,40 @@
 = pybee-docker
 
-Docker containers for the PyBee project
+Docker container for the PyBee project.
+
+Currently installed software:
+* Python 3.6.4
+* javac 1.8.0_111-internal
+* Apache Ant v1.10.2
+* node v6.7.0
+* npm 5.7.1
+* Android SDK tools v26.1.1
+
+PyBee packages (all as editables from current master branch):
+* voc
+* briefcase
+* toga (core, django, android)
+
+A up-to-date list can be found in the Travis-CI output: https://travis-ci.org/jedie/pybee-docker
+
+The docker image can be found here: https://hub.docker.com/r/jedie/pybee/
+
 
 | {{https://travis-ci.org/jedie/pybee-docker.svg|Build Status on travis-ci.org}} | [[https://travis-ci.org/jedie/pybee-docker/|travis-ci.org/jedie/pybee-docker]] |
+
+
+== usage
+
+{{{
+$ git clone https://github.com/jedie/pybee-docker.git
+$ cd pybee-docker
+
+# pull 'pybee' image from docker registry
+pybee-docker$ ./pull.sh
+
+# Display version information from installed packages:
+pybee-docker$ ./version_info.sh
+}}}
 
 
 == PyBee links:
@@ -16,6 +48,15 @@ Docker containers for the PyBee project
  * https://hub.docker.com/r/runmymind/docker-android-sdk/
  * https://github.com/mindrunner/docker-android-sdk
 
+== cleanup
+
+{{{
+# remove unused images:
+docker image prune -f
+
+# Remove all stopped containers:
+docker container prune -f
+}}}
 
 == donation
 

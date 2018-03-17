@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE_NAME=jedie/pybee:latest
+IMAGE_NAME=local:pybee
 
 PYBEE_DOCKER_HOME=~/.pybee-docker
 mkdir -p ${PYBEE_DOCKER_HOME}
