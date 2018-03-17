@@ -10,7 +10,7 @@ before_script:
 
 script:
     - set -ex
-    
+
     # create docker image
     - ./build.sh
 
@@ -33,5 +33,5 @@ after_script:
 
 after_success:
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
-        docker pull jedie/pybee;
+        docker push jedie/pybee:latest;
       fi

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE_NAME=pybee
+IMAGE_NAME=jedie/pybee:latest
 
 set -xe
 
