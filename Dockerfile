@@ -8,11 +8,11 @@ FROM jedie/pybee:latest
 # Setup user
 #
 
-#ARG	USER_ID=1000
-#
-#RUN set -x && \
-#	addgroup -g ${USER_ID} -S bee && \
-#	adduser -u ${USER_ID} -D -S -G bee bee
+ARG	DOCKER_UID
+
+RUN set -x && \
+	addgroup -g ${DOCKER_UID} -S bee && \
+	adduser -u ${DOCKER_UID} -D -S -G bee bee
 
 USER bee
 VOLUME /home/bee/
