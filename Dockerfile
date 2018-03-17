@@ -45,13 +45,30 @@ ENV PATH ${PATH}:/opt/ant/bin
 
 #
 #__________________________________________________________________________________________________
-# Install VOC
+# Install nodejs and npm
 #
+
+RUN set -ex \
+    && apk add --no-cache git nodejs \
+&& npm install -g npm
+
+#
+#__________________________________________________________________________________________________
+# Display some version informations:
+#
+
 
 RUN set -ex && \
     python --version && \
     javac -version && \
-    ant -version
+    ant -version && \
+    node --version && \
+    npm --version
+
+#
+#__________________________________________________________________________________________________
+# Install VOC
+#
 
 RUN set -ex && \
     mkdir ~/pybee && \
