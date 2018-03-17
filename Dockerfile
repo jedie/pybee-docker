@@ -21,7 +21,7 @@ RUN set -ex && \
     apk add --no-cache openjdk8
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
-ENV PATH ${PATH}:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+ENV PATH ${PATH}:${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin
 
 
 #
@@ -31,16 +31,16 @@ ENV PATH ${PATH}:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-ope
 #
 # Version Number: https://www.apache.org/dist/ant/binaries/?C=M;O=A
 ENV ANT_VERSION 1.10.2
+ENV ANT_HOME /opt/ant
+ENV PATH ${PATH}:${ANT_HOME}/bin
+
 RUN set -ex && \
     cd /tmp && \
     wget --no-verbose https://www.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
     tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
     rm apache-ant-${ANT_VERSION}-bin.tar.gz && \
     mkdir /opt && \
-    mv apache-ant-${ANT_VERSION} /opt/ant
-
-ENV ANT_HOME /opt/ant
-ENV PATH ${PATH}:/opt/ant/bin
+    mv apache-ant-${ANT_VERSION} ${ANT_HOME}
 
 
 #
@@ -62,14 +62,12 @@ RUN set -ex \
 # https://developer.android.com/studio/index.html
 # under: "Get just the command line tools"
 ENV SDK_TOOLS_VERSION=3859397
+ENV ANDROID_HOME /opt/android
+ENV PATH ${PATH}:${ANDROID_HOME}/bin
+
 RUN set -ex && \
     cd /tmp && \
-    wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip
-
-ENV ANDROID_HOME /opt/android
-ENV PATH $PATH:$ANDROID_HOME/bin
-
-RUN set -ex && \
+    wget --no-verbose -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip && \
     cd /tmp && \
     ls -la && \
     unzip android-sdk.zip && \

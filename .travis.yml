@@ -6,7 +6,7 @@ language: bash
 services: docker
 
 before_script:
-  - env | sort
+    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 
 script:
     # create docker image
@@ -27,5 +27,9 @@ script:
     - ./shell.sh voc --version
 
 after_script:
-  - docker images
+    - docker images
 
+after_success:
+    - if [ "$TRAVIS_BRANCH" == "master" ]; then
+        docker pull jedie/pybee;
+      fi
