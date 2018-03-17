@@ -2,4 +2,6 @@
 
 Docker containers for the PyBee project
 
+| {{https://travis-ci.org/jedie/pybee-docker.svg|Build Status on travis-ci.org}} | [[https://travis-ci.org/jedie/pybee-docker/|travis-ci.org/jedie/pybee-docker]] |
+
 https://github.com/pybee
