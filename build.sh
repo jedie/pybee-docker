@@ -2,7 +2,7 @@
 
 IMAGE_NAME=local:pybee
 DOCKER_UID=$(id -u)
-DOCKER_UGID=$(id -g
+DOCKER_UGID=$(id -g)
 
 set -xe
 
