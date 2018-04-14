@@ -17,3 +17,8 @@ RUN set -x && \
 USER bee
 VOLUME /home/bee/
 WORKDIR /home/bee/
+
+RUN set -x && \
+    mkdir -p ~/.android && \
+    touch ~/.android/repositories.cfg && \
+    yes | sdkmanager --licenses

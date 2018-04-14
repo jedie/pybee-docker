@@ -100,7 +100,9 @@ RUN set -ex && \
     rm android-sdk.zip && \
     mv tools ${ANDROID_HOME} && \
     ls -la ${ANDROID_HOME}/bin && \
-    yes | sdkmanager --licenses > /dev/null && \
+    mkdir -p ~/.android && \
+    touch ~/.android/repositories.cfg && \
+    yes | sdkmanager --licenses && \
     sdkmanager --update && \
     sdkmanager --list
 
