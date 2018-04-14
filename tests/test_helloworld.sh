@@ -17,4 +17,5 @@ pip freeze
 cd helloworld
 ls -la
 
+./setup.py --version
 ./setup.py android -s

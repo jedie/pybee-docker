@@ -20,5 +20,4 @@ WORKDIR /home/bee/
 
 RUN set -x && \
     mkdir -p ~/.android && \
-    touch ~/.android/repositories.cfg && \
-    yes | sdkmanager --licenses
+    touch ~/.android/repositories.cfg
