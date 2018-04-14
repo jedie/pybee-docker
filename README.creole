@@ -5,6 +5,7 @@ Docker container for the PyBee project.
 Currently installed software:
 * Python 3.6.4
 * javac 1.8.0_111-internal
+* Gradle 4.6
 * Apache Ant v1.10.2
 * node v6.7.0
 * npm 5.7.1
