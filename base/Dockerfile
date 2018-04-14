@@ -12,7 +12,7 @@ MAINTAINER Jens Diemer "https://github.com/jedie/pybee-docker"
 RUN set -ex && \
     umask 0002 && \
     apk --no-cache upgrade && \
-    apk add --no-cache git ca-certificates wget curl bash && \
+    apk add --no-cache git ca-certificates wget unzip && \
     rm -rf /var/cache/apk/* && \
     pip3 install --no-cache-dir --upgrade pip
 
@@ -27,6 +27,23 @@ RUN set -ex && \
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH ${PATH}:${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin
+
+
+#
+#__________________________________________________________________________________________________
+# Install gradle - https://gradle.org/install/
+#
+ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_VERSION 4.6
+RUN set -ex && \
+    cd /tmp && \
+    wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
+    unzip gradle.zip && \
+    rm gradle.zip && \
+    mkdir -p ${GRADLE_HOME} && \
+    mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" && \
+    ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle && \
+    gradle --version
 
 
 #
@@ -84,17 +101,6 @@ RUN set -ex && \
     yes | sdkmanager --licenses > /dev/null && \
     sdkmanager --update && \
     sdkmanager --list
-
-#
-#__________________________________________________________________________________________________
-# Install SDKMAN! and gradle
-#
-# http://sdkman.io/
-# https://gradle.org/install/
-#
-RUN set -ex && \
-    curl -s "https://get.sdkman.io" | bash && \
-    sdk install gradle
 
 
 #

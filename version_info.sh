@@ -12,6 +12,7 @@ set -e
 
 ./shell.sh python --version
 ./shell.sh javac -version
+./shell.sh gradle --version
 ./shell.sh ant -version
 ./shell.sh node --version
 ./shell.sh npm --version
