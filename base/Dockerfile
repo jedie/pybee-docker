@@ -21,12 +21,12 @@ RUN set -ex && \
 # Install Java 8
 # borrowed from: https://github.com/docker-library/openjdk/blob/master/8-jdk/alpine/Dockerfile
 #
-RUN set -ex && \
-    apk add --no-cache openjdk8 && \
-    rm -rf /var/cache/apk/*
-
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH ${PATH}:${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin
+RUN set -ex && \
+    apk add --no-cache openjdk8 && \
+    rm -rf /var/cache/apk/* && \
+    javac -version
 
 
 #
@@ -35,6 +35,7 @@ ENV PATH ${PATH}:${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin
 #
 ENV GRADLE_VERSION 4.6
 ENV GRADLE_HOME /opt/gradle-${GRADLE_VERSION}
+ENV PATH ${PATH}:${GRADLE_HOME}/bin
 RUN set -ex && \
     cd /tmp && \
     wget --no-verbose -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
@@ -42,7 +43,6 @@ RUN set -ex && \
     rm gradle.zip && \
     mkdir -p ${GRADLE_HOME} && \
     mv "gradle-${GRADLE_VERSION}/" /opt && \
-    ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle && \
     gradle --version
 
 
@@ -53,7 +53,7 @@ RUN set -ex && \
 #
 # Version Number: https://www.apache.org/dist/ant/binaries/?C=M;O=A
 ENV ANT_VERSION 1.10.2
-ENV ANT_HOME /opt/ant
+ENV ANT_HOME /opt/apache-ant-${ANT_VERSION}
 ENV PATH ${PATH}:${ANT_HOME}/bin
 
 RUN set -ex && \
@@ -61,8 +61,8 @@ RUN set -ex && \
     wget --no-verbose -O apache-ant-bin.tar.gz https://www.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
     tar -xzf apache-ant-bin.tar.gz && \
     rm apache-ant-bin.tar.gz && \
-    mkdir -p ${ANT_HOME} && \
-    mv apache-ant-${ANT_VERSION} ${ANT_HOME}
+    mv "apache-ant-${ANT_VERSION}/" /opt && \
+    ant -version
 
 
 #
@@ -73,7 +73,9 @@ RUN set -ex && \
 RUN set -ex && \
     apk add --no-cache git nodejs && \
     rm -rf /var/cache/apk/* && \
-    npm install -g npm
+    npm install -g npm && \
+    npm --version && \
+    node --version
 
 
 
