@@ -33,15 +33,15 @@ ENV PATH ${PATH}:${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin
 #__________________________________________________________________________________________________
 # Install gradle - https://gradle.org/install/
 #
-ENV GRADLE_HOME /opt/gradle
 ENV GRADLE_VERSION 4.6
+ENV GRADLE_HOME /opt/gradle-${GRADLE_VERSION}
 RUN set -ex && \
     cd /tmp && \
     wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
     unzip gradle.zip && \
     rm gradle.zip && \
     mkdir -p ${GRADLE_HOME} && \
-    mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" && \
+    mv "gradle-${GRADLE_VERSION}/" /opt && \
     ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle && \
     gradle --version
 
