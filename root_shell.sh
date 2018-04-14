@@ -15,6 +15,7 @@ fi
 set -xe
 
 docker run -it --rm \
+    --user=0:0 \
     -v /tmp:/tmp \
     -v ${PYBEE_DOCKER_HOME}:/home/bee \
     ${IMAGE_NAME} \
