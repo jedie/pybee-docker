@@ -41,6 +41,20 @@ pybee-docker$ ./version_info.sh
 }}}
 
 
+run toc tutorial0 test:
+{{{
+pybee-docker$ cd tests
+pybee-docker/tests$ ./run_test.sh test_voc_turorial0.sh
+}}}
+
+
+compile helloworld as android app:
+{{{
+pybee-docker$ cd tests
+pybee-docker/tests$ ./run_test.sh test_helloworld.sh
+}}}
+
+
 == PyBee links:
 
  * https://github.com/pybee
