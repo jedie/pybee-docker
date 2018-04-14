@@ -32,6 +32,9 @@ $ cd pybee-docker
 # pull 'pybee' image from docker registry
 pybee-docker$ ./pull.sh
 
+# build 'local:pybee':
+pybee-docker$ ./build.sh
+
 # Display version information from installed packages:
 pybee-docker$ ./version_info.sh
 }}}
