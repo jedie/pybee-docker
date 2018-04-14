@@ -37,7 +37,7 @@ ENV GRADLE_VERSION 4.6
 ENV GRADLE_HOME /opt/gradle-${GRADLE_VERSION}
 RUN set -ex && \
     cd /tmp && \
-    wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
+    wget --no-verbose -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
     unzip gradle.zip && \
     rm gradle.zip && \
     mkdir -p ${GRADLE_HOME} && \
@@ -58,10 +58,10 @@ ENV PATH ${PATH}:${ANT_HOME}/bin
 
 RUN set -ex && \
     cd /tmp && \
-    wget --no-verbose https://www.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
-    tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
-    rm apache-ant-${ANT_VERSION}-bin.tar.gz && \
-    mkdir /opt && \
+    wget --no-verbose -O apache-ant-bin.tar.gz https://www.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
+    tar -xzf apache-ant-bin.tar.gz && \
+    rm apache-ant-bin.tar.gz && \
+    mkdir -p ${ANT_HOME} && \
     mv apache-ant-${ANT_VERSION} ${ANT_HOME}
 
 
