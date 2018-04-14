@@ -12,7 +12,7 @@ MAINTAINER Jens Diemer "https://github.com/jedie/pybee-docker"
 RUN set -ex && \
     umask 0002 && \
     apk --no-cache upgrade && \
-    apk add --no-cache git ca-certificates wget && \
+    apk add --no-cache git ca-certificates wget curl bash && \
     rm -rf /var/cache/apk/* && \
     pip3 install --no-cache-dir --upgrade pip
 
@@ -84,6 +84,17 @@ RUN set -ex && \
     yes | sdkmanager --licenses > /dev/null && \
     sdkmanager --update && \
     sdkmanager --list
+
+#
+#__________________________________________________________________________________________________
+# Install SDKMAN! and gradle
+#
+# http://sdkman.io/
+# https://gradle.org/install/
+#
+RUN set -ex && \
+    curl -s "https://get.sdkman.io" | bash && \
+    sdk install gradle
 
 
 #

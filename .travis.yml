@@ -25,6 +25,7 @@ script:
 
     - cd tests
     - ./run_test.sh test_voc_turorial0.sh
+    - ./run_test.sh test_helloworld.sh
 
 after_script:
     - docker images

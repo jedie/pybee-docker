@@ -11,9 +11,9 @@
 DOCKER_UID=$(id -u)
 DOCKER_UGID=$(id -g)
 
-BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BASE_DIR="$( dirname $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ))"
 
-ARGS="/bin/ash ${1}"
+ARGS="/bin/ash tests/${1}"
 
 (
     set -x
