@@ -102,7 +102,7 @@ RUN set -ex && \
     ls -la ${ANDROID_HOME}/bin && \
     mkdir -p ~/.android && \
     touch ~/.android/repositories.cfg && \
-    yes | sdkmanager --licenses && \
+    yes | sdkmanager --licenses | grep license && \
     sdkmanager --update && \
     sdkmanager --list
 
