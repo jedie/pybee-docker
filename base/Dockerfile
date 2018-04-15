@@ -14,7 +14,10 @@ RUN set -ex && \
     apk --no-cache upgrade && \
     apk add --no-cache git ca-certificates wget unzip && \
     rm -rf /var/cache/apk/* && \
-    pip3 install --no-cache-dir --upgrade pip
+    pip3 install --no-cache-dir --upgrade "pip<10"
+
+# TODO: use pip v10 if https://github.com/pybee/briefcase/issues/120 fixed
+
 
 #
 #__________________________________________________________________________________________________
