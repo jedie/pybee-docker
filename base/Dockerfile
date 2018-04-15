@@ -99,6 +99,7 @@ RUN set -ex && \
     unzip -q android-sdk.zip && \
     rm android-sdk.zip && \
     mv tools ${ANDROID_HOME} && \
+    chmod 777 ${ANDROID_HOME}/bin/* && \
     ls -la ${ANDROID_HOME}/bin && \
     mkdir -p ~/.android && \
     touch ~/.android/repositories.cfg && \
