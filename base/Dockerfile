@@ -127,14 +127,13 @@ ENV PYTHON_JAVA_SUPPORT_JAR=/opt/voc/dist/python-java-support.jar
 #__________________________________________________________________________________________________
 # Install Briefcase - https://github.com/pybee/briefcase
 #
-# TODO: Change github.com/freakboy3742 to github.com/pybee if changes merged
+# TODO: Change github.com/jedie to github.com/pybee if changes merged
 # see:
-#   https://github.com/pybee/briefcase/pull/118
-#   https://github.com/pybee/briefcase/issues/117#issuecomment-381393379
+#   https://github.com/pybee/briefcase/pull/119
 #
 RUN set -ex && \
     cd /opt && \
-    git clone --depth=5 https://github.com/freakboy3742/briefcase.git && \
+    git clone --depth=5 https://github.com/jedie/briefcase.git && \
     cd briefcase && \
     pip install -e .
 
