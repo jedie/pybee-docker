@@ -5,6 +5,7 @@ set -e
 ./shell.sh sdkmanager --list
 
 # List all installed packages:
+./shell.sh pip --version
 ./shell.sh pip freeze
 
 # Just print some version info:
