@@ -19,4 +19,9 @@ ls -la
 
 pip --version
 ./setup.py --version
+
+mkdir -p ~/.android
+touch ~/.android/repositories.cfg
+yes | sdkmanager --licenses | grep license
+
 ./setup.py android -s

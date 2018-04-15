@@ -102,9 +102,6 @@ RUN set -ex && \
     mv tools ${ANDROID_HOME} && \
     chmod 777 ${ANDROID_HOME}/bin/* && \
     ls -la ${ANDROID_HOME}/bin && \
-    mkdir -p ~/.android && \
-    touch ~/.android/repositories.cfg && \
-    yes | sdkmanager --licenses | grep license && \
     sdkmanager --update && \
     sdkmanager --list
 
