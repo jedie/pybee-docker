@@ -18,6 +18,5 @@ cd helloworld
 ls -la
 
 pip --version
-pip install "pip<10"
 ./setup.py --version
 ./setup.py android -s
