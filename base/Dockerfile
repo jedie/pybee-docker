@@ -88,7 +88,7 @@ RUN set -ex && \
 # Latest version number on:
 # https://developer.android.com/studio/index.html
 # under: "Get just the command line tools"
-ENV SDK_TOOLS_VERSION=4697961
+ENV SDK_TOOLS_VERSION=4333796
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 
