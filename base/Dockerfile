@@ -52,7 +52,7 @@ RUN set -ex && \
 # borrowed from: https://github.com/webratio/docker/blob/master/ant/1.10.1/Dockerfile
 #
 # Version Number: https://www.apache.org/dist/ant/binaries/?C=M;O=A
-ENV ANT_VERSION 1.10.2
+ENV ANT_VERSION 1.10.3
 ENV ANT_HOME /opt/apache-ant-${ANT_VERSION}
 ENV PATH ${PATH}:${ANT_HOME}/bin
 
