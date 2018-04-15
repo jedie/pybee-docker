@@ -14,7 +14,7 @@ RUN set -ex && \
     apk --no-cache upgrade && \
     apk add --no-cache git ca-certificates wget unzip && \
     rm -rf /var/cache/apk/* && \
-    pip3 install --no-cache-dir --upgrade "pip<10"
+    pip3 install --no-cache-dir --upgrade pip
 
 #
 #__________________________________________________________________________________________________
