@@ -14,9 +14,7 @@ RUN set -ex && \
     apk --no-cache upgrade && \
     apk add --no-cache git ca-certificates wget unzip && \
     rm -rf /var/cache/apk/* && \
-    pip3 install --no-cache-dir --upgrade "pip<10"
-
-# TODO: use pip v10 if https://github.com/pybee/briefcase/issues/120 fixed
+    pip3 install --no-cache-dir --upgrade pip
 
 
 #
@@ -130,13 +128,9 @@ ENV PYTHON_JAVA_SUPPORT_JAR=/opt/voc/dist/python-java-support.jar
 #__________________________________________________________________________________________________
 # Install Briefcase - https://github.com/pybee/briefcase
 #
-# TODO: Change github.com/jedie to github.com/pybee if changes merged
-# see:
-#   https://github.com/pybee/briefcase/pull/119
-#
 RUN set -ex && \
     cd /opt && \
-    git clone --depth=5 https://github.com/jedie/briefcase.git && \
+    git clone --depth=5 https://github.com/pybee/briefcase.git && \
     cd briefcase && \
     pip install -e .
 
