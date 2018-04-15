@@ -94,9 +94,9 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 
 RUN set -ex && \
     cd /opt && \
-    wget --no-verbose -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip && \
-    unzip -q android-sdk-tools.zip -d ${ANDROID_HOME} && \
-    rm android-sdk.zip && \
+    wget --no-verbose -O android-sdk-linux.zip https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip && \
+    unzip -q android-sdk-linux.zip -d ${ANDROID_HOME} && \
+    rm android-sdk-linux.zip && \
     chmod 777 -vRf ${ANDROID_HOME} && \
     sdkmanager --update && \
     sdkmanager --list
