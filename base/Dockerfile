@@ -89,19 +89,15 @@ RUN set -ex && \
 # https://developer.android.com/studio/index.html
 # under: "Get just the command line tools"
 ENV SDK_TOOLS_VERSION=4697961
-ENV ANDROID_HOME /opt/android
-ENV PATH ${PATH}:${ANDROID_HOME}/bin
+ENV ANDROID_HOME /opt/android-sdk-linux
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 
 RUN set -ex && \
-    cd /tmp && \
+    cd /opt && \
     wget --no-verbose -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip && \
-    cd /tmp && \
-    ls -la && \
-    unzip -q android-sdk.zip && \
+    unzip -q android-sdk-tools.zip -d ${ANDROID_HOME} && \
     rm android-sdk.zip && \
-    mv tools ${ANDROID_HOME} && \
-    chmod 777 ${ANDROID_HOME}/bin/* && \
-    ls -la ${ANDROID_HOME}/bin && \
+    chmod 777 -vRf ${ANDROID_HOME} && \
     sdkmanager --update && \
     sdkmanager --list
 
